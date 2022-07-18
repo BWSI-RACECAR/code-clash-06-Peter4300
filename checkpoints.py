@@ -33,10 +33,17 @@ class Solution:
         # type checkpoints: list
         # return type: int
         
-        # TODO: Write code below to return an int with the solution to the prompt
-        largest = abs(checkpoints[1]-checkpoints[0])
-        for x in range(len(checkpoints)-1):
-            distance = abs(checkpoints[x+1]-checkpoints[x])
+        new_list = []
+        while checkpoints:
+            minimum = checkpoints[0]
+            for x in checkpoints:
+                if x < minimum:
+                    minimum = x
+            new_list.append(minimum)
+            checkpoints.remove(minimum)
+        largest = abs(new_list[1]-new_list[0])
+        for x in range(len(new_list)-1):
+            distance = abs(new_list[x+1]-new_list[x])
             if distance > largest:
                 largest = distance
         return largest
